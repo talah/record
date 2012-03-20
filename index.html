@@ -81,26 +81,20 @@ function moveCalibrateRect(callback) {
     });
 }
 
-function showImage(callback) {
+$(function() {
+    var imageSrc = "images/kitten.jpg";
     var image = $("img#image");
     var length = 10000;
-
-    image.attr("src", "kitten.jpg");
-    image.fadeIn("slow").delay(length).fadeOut("slow", function() {
-       callback();
-    });
-}
-
-$(function() {
     var instructions = $("#instructions");
     var messageLength = 2000;
 
     instructions.text("Please look at the moving square.");
     instructions.fadeIn("slow").delay(messageLength).fadeOut("slow", function() {
         moveCalibrateRect(function() {
+            image.attr("src", imageSrc);
             instructions.text("Well done! Now, please look at this photo for 10 seconds.");
             instructions.fadeIn("slow").delay(messageLength).fadeOut("slow", function() {
-                showImage(function() {
+                image.fadeIn("slow").delay(length).fadeOut("slow", function() {
                     instructions.text("That's all! Thank you!");
                     instructions.fadeIn("slow").delay(messageLength).fadeOut("slow", function() {
                     });
