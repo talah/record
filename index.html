@@ -91,12 +91,15 @@ $(function() {
     instructions.text("Please look at the moving square.");
     instructions.fadeIn("slow").delay(messageLength).fadeOut("slow", function() {
         moveCalibrateRect(function() {
-            image.attr("src", imageSrc);
             instructions.text("Well done! Now, please look at this photo for 10 seconds.");
-            instructions.fadeIn("slow").delay(messageLength).fadeOut("slow", function() {
-                image.fadeIn("slow").delay(length).fadeOut("slow", function() {
-                    instructions.text("That's all! Thank you!");
-                    instructions.fadeIn("slow").delay(messageLength).fadeOut("slow", function() {
+            instructions.fadeIn("slow", function() {
+                image.load(imageSrc, function() {
+                    instructions.delay(messageLength).fadeOut("slow", function() {
+                        image.fadeIn("slow").delay(length).fadeOut("slow", function() {
+                            instructions.text("That's all! Thank you!");
+                            instructions.fadeIn("slow").delay(messageLength).fadeOut("slow", function() {
+                            });
+                        });
                     });
                 });
             });
