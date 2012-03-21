@@ -3,7 +3,8 @@ var express = require('express');
 var app = express.createServer(express.logger());
 
 app.configure(function(){
-    app.use(express.static(__dirname + "/public"));
+    console.log(__dirname);
+    app.use("/public", express.static(__dirname + "/public"));
     app.use(express.methodOverride());
     app.use(app.router);
 });
