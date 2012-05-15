@@ -96,7 +96,7 @@ $(window).load(function() {
     var messageLength = 2000;
 
     Framey.observe("recorder", "recordClicked", function(data) {
-        $("#derp").fadeOut("slow", function() {
+        $("#derp").delay(6000).fadeOut("slow", function() {
             instructions.text("Please look at the moving square.");
             instructions.fadeIn("slow").delay(messageLength).fadeOut("slow", function() {
                 moveCalibrateRect(function() {
