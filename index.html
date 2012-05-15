@@ -52,17 +52,9 @@ img#image {
     width: 800px;
 }
 
-#recorder {
-    position: relative;
-    z-index: -1;
-}
-
 #derp {
-    position: absolute;
     width: 800px;
     height: 600px;
-    z-index: 0;
-    display: hidden;
     background-color: #000000;
 }
 
@@ -104,7 +96,7 @@ $(window).load(function() {
     var messageLength = 2000;
 
     Framey.observe("recorder", "recordClicked", function(data) {
-        $("#derp").delay("5000").fadeIn("slow", function() {
+        $("#derp").fadeOut("slow", function() {
             instructions.text("Please look at the moving square.");
             instructions.fadeIn("slow").delay(messageLength).fadeOut("slow", function() {
                 moveCalibrateRect(function() {
@@ -127,8 +119,10 @@ $(window).load(function() {
   </head>
   <body>
     <div id="content">
-      <div id="derp"></div>
-      <input type="video" id="recorder" data-params="{api_key:'AROSJ5BTNIKWW8697UZZC2JZ4', width:'800', height:'600'}"/>
+      <div id="derp">
+        <input type="video" id="recorder" data-params="{api_key:'AROSJ5BTNIKWW8697UZZC2JZ4', width:'800', height:'600'}"/>
+      </div>
+
       <div id="calibrate"></div>
       <h1 id="instructions"></h1>
       <img id="image"></img>
