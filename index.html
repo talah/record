@@ -95,8 +95,25 @@ function moveCalibrateRect(callback) {
     });
 }
 
+function getParameters() {
+    var searchString = window.location.search.substring(1)
+    , params = searchString.split("&")
+    , hash = {}
+    ;
+
+    for (var i = 0; i < params.length; i++) {
+        var val = params[i].split("=");
+        hash[unescape(val[0])] = unescape(val[1]);
+    }
+
+    return hash;
+}
+
 $(window).load(function() {
+    var params = getParameters();
     var imageSrc = "public/kitten.jpg";
+    if (params["url"]) imageSrc = "public/" + params["url"];
+
     var image = $("img#image");
     var length = 10000;
     var instructions = $("#instructions");
