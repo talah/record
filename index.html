@@ -52,6 +52,9 @@ img#image {
     width: 800px;
 }
 
+#recorder {
+    position: relative;
+}
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="http://framey.com/javascripts/framey3.js"></script>
@@ -82,41 +85,38 @@ function moveCalibrateRect(callback) {
     });
 }
 
-$(function() {
-    Framey.getRecorder('[YOUR_RECORDER_ID]').startRecording();
-
+$(window).load(function() {
     var imageSrc = "public/kitten.jpg";
     var image = $("img#image");
     var length = 10000;
     var instructions = $("#instructions");
     var messageLength = 2000;
 
-    instructions.text("Please look at the moving square.");
-    instructions.fadeIn("slow").delay(messageLength).fadeOut("slow", function() {
-        moveCalibrateRect(function() {
-            image.attr("src", imageSrc);
-            instructions.text("Well done! Now, please look at this photo for 10 seconds.");
+    Framey.observe("recorder", "recordClicked", function(data) {
+        $("#recorder").fadeOut("fast", function() {
+            instructions.text("Please look at the moving square.");
             instructions.fadeIn("slow").delay(messageLength).fadeOut("slow", function() {
-                image.fadeIn("slow").delay(length).fadeOut("slow", function() {
-                    instructions.text("That's all! Thank you!");
+                moveCalibrateRect(function() {
+                    image.attr("src", imageSrc);
+                    instructions.text("Well done! Now, please look at this photo for 10 seconds.");
                     instructions.fadeIn("slow").delay(messageLength).fadeOut("slow", function() {
+                        image.fadeIn("slow").delay(length).fadeOut("slow", function() {
+                            instructions.text("That's all! Thank you!");
+                            instructions.fadeIn("slow").delay(messageLength).fadeOut("slow", function() {
+                            });
+                        });
                     });
                 });
             });
         });
     });
-
-    Framey.getRecorder('[YOUR_RECORDER_ID]').stopRecording();
-    Framey.getRecorder('[YOUR_RECORDER_ID]').review();
-    Framey.getRecorder('[YOUR_RECORDER_ID]').publish();
 })
 
     </script>
   </head>
   <body>
-    <input type="video" id="FrameyRecorder" data-params="{api_key:'QHTQT6K2GUIJ6TYRKOJZXK1RO'}"/>
-
     <div id="content">
+      <input type="video" id="recorder" data-params="{api_key:'QHTQT6K2GUIJ6TYRKOJZXK1RO', width:'800', height:'600'}"/>
       <div id="calibrate"></div>
       <h1 id="instructions"></h1>
       <img id="image"></img>
