@@ -112,8 +112,9 @@ $(window).load(function() {
                     instructions.fadeIn("slow").delay(messageLength).fadeOut("slow", function() {
                         image.fadeIn("slow").delay(length).fadeOut("slow", function() {
                             instructions.text("That's all! Thank you!");
+                            Framey.getRecorder("recorder").stopRecording();
+
                             instructions.fadeIn("slow").delay(messageLength).fadeOut("slow", function() {
-                                Framey.getRecorder("recorder").stopRecording();
                                 $("#derp").fadeOut("slow");
                             });
                         });
