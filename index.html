@@ -102,6 +102,11 @@ $(window).load(function() {
     var instructions = $("#instructions");
     var messageLength = 2000;
 
+    Framey.observe("recorder", "publishSucceeded", function(data) {
+        console.log(data);
+        alert("Done! TODO: Glue code here...");
+    });
+
     Framey.observe("recorder", "recordClicked", function(data) {
         $("#derp").delay(6000).fadeIn("slow", function() {
             instructions.text("Please look at the moving square.");
