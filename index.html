@@ -52,6 +52,10 @@ img#image {
     width: 800px;
 }
 
+#record-container {
+    position: absolute;
+}
+
 div#derp {
     position: absolute;
     display: none;
@@ -123,7 +127,9 @@ $(window).load(function() {
   <body>
     <div id="content">
       <div style="z-index: 1;" id="derp"></div>
-      <input style="z-index: 0; " type="video" id="recorder" data-params="{api_key:'AROSJ5BTNIKWW8697UZZC2JZ4', width:'800', height:'600'}"/>
+      <div id="record-container">
+        <input style="z-index: 0; " type="video" id="recorder" data-params="{api_key:'AROSJ5BTNIKWW8697UZZC2JZ4', width:'800', height:'600'}"/>
+      </div>
       <div style="z-index: 1;" id="calibrate"></div>
       <h1 style="z-index: 1;" id="instructions"></h1>
       <img style="z-index: 1;" id="image"></img>
