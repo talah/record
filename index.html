@@ -113,6 +113,8 @@ $(window).load(function() {
                         image.fadeIn("slow").delay(length).fadeOut("slow", function() {
                             instructions.text("That's all! Thank you!");
                             instructions.fadeIn("slow").delay(messageLength).fadeOut("slow", function() {
+                                Framey.getRecorder("recorder").stopRecording();
+                                $("#derp").fadeOut("slow");
                             });
                         });
                     });
